@@ -1,0 +1,50 @@
+.text
+
+.globl _start
+
+MAX_CHAR=30
+
+_start:
+
+	
+	movl $4, %eax
+	movl $1, %ebx
+	movl $msg, %ecx
+	movl $len, %edx
+	int $0x80
+
+
+	
+	movl $3, %eax 		
+	movl $0, %ebx		
+	movl %esp, %ecx 	
+	movl $MAX_CHAR, %edx	
+	int $0x80		
+
+
+	
+	movl $1, %ecx 		
+end_input:
+	xor %ebx, %ebx
+	movb (%esp), %bl
+	add $1, %esp		
+	add $1, %ecx	 	
+	cmp $0xa, %ebx		
+	jne end_input		
+
+
+	
+	sub %ecx, %esp		
+	movl $4, %eax		
+	movl $1, %ebx		
+	movl %ecx, %edx		
+	movl %esp, %ecx		
+	int $0x80		
+
+	
+	movl $1, %eax
+	int $0x80	
+
+.data
+msg: .ascii \"Insert an input:\\n\"
+len =.-msg
