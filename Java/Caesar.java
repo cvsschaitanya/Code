@@ -1,24 +1,27 @@
 /**
  * Extends the MonoAlphabeticSubstitution class.
- * A special type of MonoAlphabeticSubstitution cipher 
- * where the mapping is given by the following simple method 
+ * A special type of MonoAlphabeticSubstitution cipher
+ * where the mapping is given by the following simple method
  * 
  * f(x) = ord_((ord(x) + k) % 26)
- * where ord(x) is an invertible function(with inverse ord_) that gives 
+ * where ord(x) is an invertible function(with inverse ord_) that gives
  * the position of the letter in the Latin Alphabet with zero indexing.
  * 
  * @author Yuvaraj Konjeti
  */
 public class Caesar extends MonoAlphaSubstitution {
     /**
-     * Implicitly calls the default constructor in the 
+     * Implicitly calls the default constructor in the
      * {@link MonoAlphaSubstitution) class to give the identity cipher.
      */
-    public Caesar() {}
+    public Caesar() {
+    }
 
     /**
-     * The simplest form of the Caesar cipher algorithm. Same as the rotate method in the previous assignment.
-     * @param ch Character to be encrypted
+     * The simplest form of the Caesar cipher algorithm. Same as the rotate method
+     * in the previous assignment.
+     * 
+     * @param ch    Character to be encrypted
      * @param shift Shift parameter of the cipher
      * @return The encrypted character
      */
@@ -33,27 +36,30 @@ public class Caesar extends MonoAlphaSubstitution {
     }
 
     /**
-     * Creates the key for the MonoAlphabetic Cipher from the shift of the Caesar Cipher
+     * Creates the key for the MonoAlphabetic Cipher from the shift of the Caesar
+     * Cipher
+     * 
      * @param k The shift of the Caesar Cipher
      * @return The equivalent key for the MonoAlphabetic Cipher
      */
     private static String getCaesarStr(int k) {
         String s = "";
-        for (char ch = 'a', CH = 'A'; ch <= 'z'; ch++, CH++) {
+        for (char ch = 'a', cH = 'A'; ch <= 'z'; ch++, cH++) {
             s = s + ch + ceaserTransform(ch, k)
-                    + CH + ceaserTransform(CH, k);
+                    + cH + ceaserTransform(cH, k);
         }
         return s;
     }
 
     /**
      * Creates a new Caesar cipher with given shift
+     * 
      * @param k the shift of the cipher.
      */
     public Caesar(int k) {
         super(getCaesarStr(k));
     }
-    
+
     /**
      * Main entry point
      * 
