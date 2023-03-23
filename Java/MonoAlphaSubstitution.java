@@ -1,14 +1,29 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Extends the Substitution class to implement its char de/encrypt methods.
+ * Represents a substitution cipher where every character in the
+ * plaintext is replaced with a fixed letter in the encrypted text.
+ * 
+ * @author Yuvaraj Konjeti
+ */
 public class MonoAlphaSubstitution extends Substitution {
 
     private Map<Character, Character> encryptTable, decryptTable;
 
+    /**
+     * Constructs the identity substitution cipher
+     */
     public MonoAlphaSubstitution() {
         this("");
     }
 
+    /**
+     * Constructs a new MonoAlphabeticSubstitution cipher with the given key
+     * 
+     * @param key The key to encrypt and decrypt
+     */
     public MonoAlphaSubstitution(String s) {
         encryptTable = new HashMap<Character, Character>();
         decryptTable = new HashMap<Character, Character>();
@@ -19,20 +34,37 @@ public class MonoAlphaSubstitution extends Substitution {
         }
     }
 
+    /**
+     * Returns the encryption of the given character
+     * 
+     * @param ch character to be encrypted
+     */
+    @Override
     public char encrypt(char ch) {
         return encryptTable.containsKey(ch)
                 ? encryptTable.get(ch)
                 : ch;
     }
 
+    /**
+     * Returns the decryption of the given character
+     * 
+     * @param ch character to be decrypted
+     */
+    @Override
     public char decrypt(char ch) {
         return decryptTable.containsKey(ch)
                 ? decryptTable.get(ch)
                 : ch;
     }
 
+    /**
+     * Main entry point
+     * 
+     * @param args {encrypt/decrypt, key, input}
+     */
     public static void main(String[] args) {
-        final String guide = "Usage: java MonoSubstitution encrypt key \"cipher text\"";
+        final String guide = "Usage: java MonoAlphaSubstitution encrypt key \"cipher text\"";
         final String wordError = "The first parameter must be \"encrypt\" or \"decrypt\"!";
 
         if (args.length != 3) {
