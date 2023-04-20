@@ -12,9 +12,9 @@
 // d denotes number of distinct requests
 // You can use any of the above notations or define additional notation as you wish.
 // 
-// appendIfMiss():
+// appendIfMiss(): Here the worst case complexity would be O(n*d) where every time we have to access the last element in the list(or insert a new element in the list).
 // 	
-// freqCount():
+// freqCount(): Here the worst case complexity would be O(n*d) where every time the last item is getting requested.
 // 
 
 class COMP108Cab {
